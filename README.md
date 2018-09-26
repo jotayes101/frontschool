@@ -1,5 +1,5 @@
-# vue-vuex-registration-login-example
+# FrontSchool
 
-Vue + Vuex - User Registration and Login Tutorial & Example
+Vue + Vuex Project
 
-To see a demo and further details go to http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example
+Based on project http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example
