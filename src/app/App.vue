@@ -1,31 +1,23 @@
 <template>
-    <div class="jumbotron">
-        <AppHeader></AppHeader>
-        <AppMenu></AppMenu>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 offset-sm-3">
-                    <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
-                    <router-view></router-view>
-                </div>
-            </div>
-        </div>
-        <AppFooter></AppFooter>
+    <div>
+        <app-header></app-header>
+        <main role="main">
+            <router-view></router-view>
+            <app-footer></app-footer>
+        </main>
     </div>
 </template>
 
 <script>
 //import Vue from "vue";
 import { mapState, mapActions } from 'vuex'
-import AppHeader from "../components/core/header/index";
-import AppMenu from "../components/core/menu/index";
-import AppFooter from "../components/core/footer/index";
+import AppHeader from "../components/core/AppHeader";
+import AppFooter from "../components/core/AppFooter";
 
 export default {
     name: 'app',
     components: {
         AppHeader,
-        AppMenu,
         AppFooter
     },
     computed: {
@@ -35,7 +27,7 @@ export default {
     },
     methods: {
         ...mapActions({
-            clearAlert: 'alert/clear' 
+            clearAlert: 'alert/clear'
         })
     },
     watch: {
@@ -43,6 +35,11 @@ export default {
             // clear alert on location change
             this.clearAlert();
         }
-    } 
+    }
 };
 </script>
+
+<style lang="scss">
+    @import '../scss/custom-bootstrap.scss';
+    @import '../../node_modules/bootstrap/scss/bootstrap.scss';
+</style>

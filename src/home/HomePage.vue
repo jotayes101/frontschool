@@ -1,41 +1,111 @@
 <template>
     <div>
-        <h1>Hi {{account.user.firstName}}!</h1>
-        <p>You're logged in with Vue + Vuex & JWT!!</p>
-        <h3>Users from secure api end point:</h3>
-        <em v-if="users.loading">Loading users...</em>
-        <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span>
-        <ul v-if="users.items">
-            <li v-for="user in users.items" :key="user.id">
-                {{user.firstName + ' ' + user.lastName}}
-                <span v-if="user.deleting"><em> - Deleting...</em></span>
-                <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
-                <span v-else> - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span>
-            </li>
-        </ul>
-        <p>
-            <router-link to="/login">Logout</router-link>
-        </p>
+        <home-carousel></home-carousel>
+        <home-marketing></home-marketing>
     </div>
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
+    import HomeCarousel from './HomeCarousel';
+    import HomeMarketing from './HomeMarketing';
     export default {
-        computed: {
-            ...mapState({
-                account: state => state.account,
-                users: state => state.users.all
-            })
-        },
-        created () {
-            this.getAllUsers();
-        },
-        methods: {
-            ...mapActions('users', {
-                getAllUsers: 'getAll',
-                deleteUser: 'delete'
-            })
+        components: {
+            HomeCarousel,
+            HomeMarketing
         }
     };
 </script>
+
+<style>
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #5a5a5a;
+    }
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+    margin-bottom: 4rem;
+    }
+    /* Since positioning the image, we need to help out the caption */
+    .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+    }
+
+    /* Declare heights because of positioning of img element */
+    .carousel-item {
+    height: 32rem;
+    background-color: #777;
+    }
+    .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+    }
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    }
+    .marketing h2 {
+    font-weight: 400;
+    }
+    .marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+    }
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+    }
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (min-width: 40em) {
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+    }
+
+    @media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+    }
+</style>
